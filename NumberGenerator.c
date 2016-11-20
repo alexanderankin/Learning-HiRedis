@@ -15,9 +15,8 @@
  */
 int main(int argc, char const *argv[])
 {
-	redisContext *context = malloc(sizeof(redisContext));
 	printf("%s\n", "Now setting up Database");
-	setupDB(context);
+	redisContext *context = setupDB();
 	printf("%s\n", "Now generating numbers");
 	return generate(context);
 }
@@ -29,10 +28,10 @@ int main(int argc, char const *argv[])
  * 
  * Code is taken from https://github.com/redis/hiredis/blob/master/examples/example.c
  */
-void setupDB(redisContext *newContext)
+redisContext *setupDB(void)
 {
 	struct timeval timeout = { 1, 500000 };
-	newContext = redisConnectWithTimeout(
+	redisContext *newContext = redisConnectWithTimeout(
 		"localhost", 
 		6379,
 		timeout);
@@ -44,6 +43,7 @@ void setupDB(redisContext *newContext)
 			printf("Connection error: can't allocate redis context\n");
 		}
 	}
+	return newContext;
 }
 
 /**

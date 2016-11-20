@@ -1,7 +1,7 @@
 
 int main(int argc, char const *argv[]);
 
-void setupDB(redisContext *newContext);
+redisContext *setupDB(void);
 
 char* updateDB(redisContext *newContext, int newValue);
 
