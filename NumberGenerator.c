@@ -9,19 +9,6 @@
 #include "NumberGenerator.h"
 
 /**
- * Connects to Redis, passes that connection to integer generator
- * the generator, and returns whatever the generator returns.
- * 
- */
-int main(int argc, char const *argv[])
-{
-	printf("%s\n", "Now setting up Database");
-	redisContext *context = setupDB();
-	printf("%s\n", "Now generating numbers");
-	return generate(context);
-}
-
-/**
  * Takes a pointer to the redis context (which represents a connection)
  * populates it with a function call that connects to the database, and 
  * then prints out things if there is an error.
